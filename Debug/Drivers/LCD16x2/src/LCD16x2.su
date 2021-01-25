@@ -1,0 +1,9 @@
+LCD16x2.c:37:6:LCD_init	16	static
+LCD16x2.c:59:6:LCD_write_char	24	static
+LCD16x2.c:84:6:LCD_cmd	16	static
+LCD16x2.c:101:6:LCD_clear	16	static
+LCD16x2.c:107:6:LCD_set_cursor	24	static
+LCD16x2.c:140:6:LCD_write_string	24	static
+LCD16x2.c:148:6:LCD_SL	16	static
+LCD16x2.c:160:6:LCD_SR	16	static
+LCD16x2.c:174:13:LCD_pin_set	16	static
