@@ -4,30 +4,16 @@
  *  Created on: Dec 1, 2020
  *      Author: Victor
  */
-/*
- * TODO La función instruction set no envia la instrucción, activa las salidas por eso al iniciar no funciona.
- * TODO Cambiar nombre y poner delays necesarios para que el IC lo interprete.
- */
+
 #include "main.h"
 #include "LCD16x2.h"
 #include "delay.h"
 
 static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr_Code);
-/*
-typedef struct
-{
-	GPIO_TypeDef * LCD_GPIO;
-	uint16_t D4_PIN;
-	uint16_t D5_PIN;
-	uint16_t D6_PIN;
-	uint16_t D7_PIN;
-	uint16_t EN_PIN;
-	uint16_t RS_PIN;
-	uint16_t LCD_EN_Delay;				// pulse enable delay, refer to datasheet
-}LCD16x2_CfgType;
-*/
+
+
 /**
-  * @brief  Initiation secuence for LCD
+  * @brief  Initiation sequence for LCD
   *
   * @note  Instruction macros can be modified in LCD16x2.h for any other ini configuration.
   *
@@ -56,9 +42,20 @@ void LCD_init(LCD16x2_CfgType *LCD16x2_CfgParam){
 	LCD_cmd(LCD16x2_CfgParam, LCD_mode_set_2);
 
 }
+
+/**
+  * @brief Writes a char on LCD (where the cursor is)
+  *
+  * @note  Split 8 bits character to two 4 bits and add the RS and RW bit.
+  *
+  * @param LCD16x2_CfgParam Configuration structure.
+  *
+  * @param Char Char to write on the LCD
+  */
+
 void LCD_write_char(LCD16x2_CfgType *LCD16x2_CfgParam, char Data){
 
-	// Divide the 8 bit caracteres in two 2 bits
+	// Divide the 8 bit caracters in two 2 bits
 	uint8_t LowNibble, HighNibble;
 
 	LowNibble = Data&0x0F;
@@ -72,30 +69,40 @@ void LCD_write_char(LCD16x2_CfgType *LCD16x2_CfgParam, char Data){
 
 	LCD_pin_set(LCD16x2_CfgParam, HighNibble);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN, 1);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN,0);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 	LCD_pin_set(LCD16x2_CfgParam, LowNibble);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN, 1);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN, 0);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 }
+
+
+/**
+  * @brief Send the instruction (6 bits) to LCD.
+  *
+  * @note  Each instruction must be build to 4 bits mode ( RS RW D8 D7 D6 D5 )
+  *
+  * @param LCD16x2_CfgParam Configuration structure.
+  *
+  * @param Inst Instruction, some example for initialization can be found on header file.
+  */
+
 void LCD_cmd(LCD16x2_CfgType *LCD16x2_CfgParam, uint8_t Inst){
 
 	LCD_pin_set(LCD16x2_CfgParam, Inst);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN, 1);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN,0);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 }
 /**
-  * @brief  Send given instruction to LCD
-  * @note  Instruction macros can be modified in LCD16x2.h for any other ini configuration.
+  * @brief Clear de LCD
+  * @note
   *
   * @param  LCD16x2_CfgParam Configuration structure.
-  *
-  * @param Instr_Code instruction code for LCD.
   *
   */
 void LCD_clear(LCD16x2_CfgType *LCD16x2_CfgParam){
@@ -104,11 +111,19 @@ void LCD_clear(LCD16x2_CfgType *LCD16x2_CfgParam){
 	HAL_Delay(2);
 }
 
+/**
+  * @brief Set the cursor in the given coordinates
+  * @note
+  *
+  * @param  LCD16x2_CfgParam Configuration structure.
+  *
+  * @param  column, Column where you want the cursor.
+  *
+  * @param    row, Row where you want the cursor.
+  *
+  */
 void LCD_set_cursor(LCD16x2_CfgType *LCD16x2_CfgParam, uint8_t column, uint8_t row){
-	// TODO idear la función para que el High nibble tenga la dirección y el low nibble tambien
-	// Tengo que mandar 0 0 1   ADR ADR ADR High Nibble
-	// y				0 0 ADR ADR ADR ADR Low Nibble
-	// ADR empieza en va de 00 a 0F para la primera fila y de 40 a 4F para la segunda fila
+
 	uint8_t LowNibble, HighNibble;
 	int8_t addr =0 ; // Base address for DDRAM is 0b1000 0000
 
@@ -135,8 +150,20 @@ if (row == 2){
 	LCD_cmd(LCD16x2_CfgParam, HighNibble);
 	LCD_cmd(LCD16x2_CfgParam, LowNibble);
 }
-delay_us(40);  //This operation has a delay given in the datasheet.
+delay_us(LCD16x2_CfgParam->LCD_EN_Delay);  //This operation has a delay given in the datasheet.
 }
+
+/**
+  * @brief Writes a string
+  * @note
+  *
+  * @param  LCD16x2_CfgParam Configuration structure.
+  *
+  * @param  *string, address to the string.
+  *
+  *
+  */
+
 void LCD_write_string(LCD16x2_CfgType *LCD16x2_CfgParam, char *string){
 
 	for (int i = 0; string[i]!= '\0'; i++){
@@ -144,6 +171,15 @@ void LCD_write_string(LCD16x2_CfgType *LCD16x2_CfgParam, char *string){
 	}
 
 }
+
+/**
+  * @brief Shift LCD characters and cursort to left
+  * @note
+  *
+  * @param  LCD16x2_CfgParam Configuration structure.
+  *
+  *
+  */
 
 void LCD_SL(LCD16x2_CfgType *LCD16x2_CfgParam){
 	//    RS RW DB7 DB6 DB5 DB4 BD3 DB2 DB1 DB0
@@ -153,9 +189,18 @@ void LCD_SL(LCD16x2_CfgType *LCD16x2_CfgParam){
 
 	LCD_cmd(LCD16x2_CfgParam, 0x01);
 	LCD_cmd(LCD16x2_CfgParam, 0x08);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 
 }
+
+/**
+  * @brief Shift LCD characters and cursort to right
+  * @note
+  *
+  * @param  LCD16x2_CfgParam Configuration structure.
+  *
+  *
+  */
 
 void LCD_SR(LCD16x2_CfgType *LCD16x2_CfgParam){
 	//    RS RW DB7 DB6 DB5 DB4 BD3 DB2 DB1 DB0
@@ -165,19 +210,27 @@ void LCD_SR(LCD16x2_CfgType *LCD16x2_CfgParam){
 
 	LCD_cmd(LCD16x2_CfgParam, 0x01);
 	LCD_cmd(LCD16x2_CfgParam, 0x0C);
-	delay_us(60);
+	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
 
 }
+/**
+  * @brief Set the GPIO pin given a instruction code
+  * @note
+  *
+  * @param  LCD16x2_CfgParam Configuration structure.
+  *
+  * @param  Instr, 6 bits instruction with 1 to indicate high and 0 to indicate low.
+  *
+  */
 
 
-
-static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr_Code){
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RS_PIN, ((Instr_Code)&(1<<5))>>5);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RW_PIN, ((Instr_Code)&(1<<4))>>4);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D7_PIN, ((Instr_Code)&(1<<3))>>3);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D6_PIN, ((Instr_Code)&(1<<2))>>2);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D5_PIN, ((Instr_Code)&(1<<1))>>1);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D4_PIN, (Instr_Code)&(1));
+static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RS_PIN, ((Instr)&(1<<5))>>5);
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RW_PIN, ((Instr)&(1<<4))>>4);
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D7_PIN, ((Instr)&(1<<3))>>3);
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D6_PIN, ((Instr)&(1<<2))>>2);
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D5_PIN, ((Instr)&(1<<1))>>1);
+		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D4_PIN, (Instr)&(1));
 }
 
 

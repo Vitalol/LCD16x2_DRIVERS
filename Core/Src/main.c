@@ -2,7 +2,7 @@
 #include "main.h"
 #include "LCD16x2.h"
 #include "delay.h"
-#include <stdio.h>
+#include "stdio.h"
 
 void SystemClock_Config(void);
 void LCD16x2_Config(void);
@@ -21,22 +21,10 @@ int main(void)
   LCD_clear(&LCD16x2_CfgParam);
 
 
-  LCD_write_char(&LCD16x2_CfgParam, 'A');
-  LCD_write_char(&LCD16x2_CfgParam, '5');
 
-
-  LCD_write_string(&LCD16x2_CfgParam,"Prueba");
-  LCD_set_cursor(&LCD16x2_CfgParam, 5, 2);
-  LCD_write_char(&LCD16x2_CfgParam, 'H');
-  LCD_clear(&LCD16x2_CfgParam);
-
-  char string[15];
-  uint8_t num = 7;
-  snprintf(string,15, "Prueba %u", num);
-  LCD_write_string(&LCD16x2_CfgParam,string);
-
-  LCD_clear(&LCD16x2_CfgParam);
-  LCD_write_string(&LCD16x2_CfgParam,"Marina apesta");
+  LCD_write_string(&LCD16x2_CfgParam,"Testing");
+  LCD_set_cursor(&LCD16x2_CfgParam, 6, 2);
+  LCD_write_string(&LCD16x2_CfgParam,"Test");
 
   while (1)
   {
@@ -68,6 +56,8 @@ int main(void)
 
 void LCD16x2_Config(void){
 
+	// LCD Cfg struct
+
 	LCD16x2_CfgParam.LCD_GPIO = GPIOB;
 
 	LCD16x2_CfgParam.D7_PIN = GPIO_PIN_13;
@@ -79,7 +69,10 @@ void LCD16x2_Config(void){
 	LCD16x2_CfgParam.RS_PIN = GPIO_PIN_1;
 	LCD16x2_CfgParam.RW_PIN = GPIO_PIN_15;
 
-	LCD16x2_CfgParam.LCD_EN_Delay = 40;
+	LCD16x2_CfgParam.LCD_EN_Delay = 60;
+
+
+	// GPIO Config
 
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 

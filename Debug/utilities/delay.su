@@ -1,2 +1,2 @@
 delay.c:12:6:timer_delay_init	16	static
-delay.c:26:6:delay_us	16	static
+delay.c:30:6:delay_us	16	static
