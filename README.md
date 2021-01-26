@@ -4,7 +4,7 @@ For STM32F4
 
 First (small) project controlling a LCD screen with 16 columns and 2 rows using a STM32F446 nucleo board.
 
-I have used the HAL function and STM32CubeIDE, it should be easy to port it to another nucleo board, but I have'nt test it myself.
+I have used the HAL function and STM32CubeIDE, it should be easy to port it to another nucleo board, but I haven't test it myself.
 
 Under /Drivers/LCD16x2/ you can find the header and source files.
 
