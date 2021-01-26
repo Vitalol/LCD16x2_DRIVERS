@@ -85,6 +85,7 @@ void LCD16x2_Config(void){
 
 
 }
+
 void led_config(void){
 	GPIO_InitTypeDef LED;
 

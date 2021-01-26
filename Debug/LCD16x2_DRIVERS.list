@@ -21,29 +21,29 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   8 .data         0000000c  20000000  080011dc  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000008c  2000000c  080011e8  0002000c  2**2
+  9 .bss          00000088  2000000c  080011e8  0002000c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000098  080011e8  00020098  2**0
+ 10 ._user_heap_stack 00000604  20000094  080011e8  00020094  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00007ab2  00000000  00000000  0002003c  2**0
+ 12 .debug_info   00007a3e  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 000013c1  00000000  00000000  00027aee  2**0
+ 13 .debug_abbrev 000013b2  00000000  00000000  00027a7a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00000830  00000000  00000000  00028eb0  2**3
+ 14 .debug_aranges 00000830  00000000  00000000  00028e30  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000778  00000000  00000000  000296e0  2**3
+ 15 .debug_ranges 00000778  00000000  00000000  00029660  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  00021862  00000000  00000000  00029e58  2**0
+ 16 .debug_macro  00021862  00000000  00000000  00029dd8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00006bfb  00000000  00000000  0004b6ba  2**0
+ 17 .debug_line   00006bfb  00000000  00000000  0004b63a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000ce844  00000000  00000000  000522b5  2**0
+ 18 .debug_str    000ce837  00000000  00000000  00052235  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  00120af9  2**0
+ 19 .comment      0000007b  00000000  00000000  00120a6c  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002088  00000000  00000000  00120b74  2**2
+ 20 .debug_frame  00002088  00000000  00000000  00120ae8  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -195,37 +195,37 @@ void LCD16x2_Config(void){
 	LCD16x2_CfgParam.D7_PIN = GPIO_PIN_13;
  80002c4:	4b2c      	ldr	r3, [pc, #176]	; (8000378 <LCD16x2_Config+0xc0>)
  80002c6:	f44f 5200 	mov.w	r2, #8192	; 0x2000
- 80002ca:	81da      	strh	r2, [r3, #14]
+ 80002ca:	815a      	strh	r2, [r3, #10]
 	LCD16x2_CfgParam.D6_PIN = GPIO_PIN_5;
  80002cc:	4b2a      	ldr	r3, [pc, #168]	; (8000378 <LCD16x2_Config+0xc0>)
  80002ce:	2220      	movs	r2, #32
- 80002d0:	819a      	strh	r2, [r3, #12]
+ 80002d0:	811a      	strh	r2, [r3, #8]
 	LCD16x2_CfgParam.D5_PIN = GPIO_PIN_4;
  80002d2:	4b29      	ldr	r3, [pc, #164]	; (8000378 <LCD16x2_Config+0xc0>)
  80002d4:	2210      	movs	r2, #16
- 80002d6:	815a      	strh	r2, [r3, #10]
+ 80002d6:	80da      	strh	r2, [r3, #6]
 	LCD16x2_CfgParam.D4_PIN = GPIO_PIN_10;
  80002d8:	4b27      	ldr	r3, [pc, #156]	; (8000378 <LCD16x2_Config+0xc0>)
  80002da:	f44f 6280 	mov.w	r2, #1024	; 0x400
- 80002de:	811a      	strh	r2, [r3, #8]
+ 80002de:	809a      	strh	r2, [r3, #4]
 
 	LCD16x2_CfgParam.EN_PIN = GPIO_PIN_14;
  80002e0:	4b25      	ldr	r3, [pc, #148]	; (8000378 <LCD16x2_Config+0xc0>)
  80002e2:	f44f 4280 	mov.w	r2, #16384	; 0x4000
- 80002e6:	821a      	strh	r2, [r3, #16]
+ 80002e6:	819a      	strh	r2, [r3, #12]
 	LCD16x2_CfgParam.RS_PIN = GPIO_PIN_1;
  80002e8:	4b23      	ldr	r3, [pc, #140]	; (8000378 <LCD16x2_Config+0xc0>)
  80002ea:	2202      	movs	r2, #2
- 80002ec:	829a      	strh	r2, [r3, #20]
+ 80002ec:	821a      	strh	r2, [r3, #16]
 	LCD16x2_CfgParam.RW_PIN = GPIO_PIN_15;
  80002ee:	4b22      	ldr	r3, [pc, #136]	; (8000378 <LCD16x2_Config+0xc0>)
  80002f0:	f44f 4200 	mov.w	r2, #32768	; 0x8000
- 80002f4:	825a      	strh	r2, [r3, #18]
+ 80002f4:	81da      	strh	r2, [r3, #14]
 
 	LCD16x2_CfgParam.LCD_EN_Delay = 60;
  80002f6:	4b20      	ldr	r3, [pc, #128]	; (8000378 <LCD16x2_Config+0xc0>)
  80002f8:	223c      	movs	r2, #60	; 0x3c
- 80002fa:	82da      	strh	r2, [r3, #22]
+ 80002fa:	825a      	strh	r2, [r3, #18]
 
 
 	// GPIO Config
@@ -247,29 +247,29 @@ void LCD16x2_Config(void){
 
 	LCD_GPIO.Pin = LCD16x2_CfgParam.D7_PIN | LCD16x2_CfgParam.D6_PIN | LCD16x2_CfgParam.D5_PIN | LCD16x2_CfgParam.D4_PIN | LCD16x2_CfgParam.EN_PIN | LCD16x2_CfgParam.RS_PIN | LCD16x2_CfgParam.RW_PIN;
  8000318:	4b17      	ldr	r3, [pc, #92]	; (8000378 <LCD16x2_Config+0xc0>)
- 800031a:	89da      	ldrh	r2, [r3, #14]
+ 800031a:	895a      	ldrh	r2, [r3, #10]
  800031c:	4b16      	ldr	r3, [pc, #88]	; (8000378 <LCD16x2_Config+0xc0>)
- 800031e:	899b      	ldrh	r3, [r3, #12]
+ 800031e:	891b      	ldrh	r3, [r3, #8]
  8000320:	4313      	orrs	r3, r2
  8000322:	b29a      	uxth	r2, r3
  8000324:	4b14      	ldr	r3, [pc, #80]	; (8000378 <LCD16x2_Config+0xc0>)
- 8000326:	895b      	ldrh	r3, [r3, #10]
+ 8000326:	88db      	ldrh	r3, [r3, #6]
  8000328:	4313      	orrs	r3, r2
  800032a:	b29a      	uxth	r2, r3
  800032c:	4b12      	ldr	r3, [pc, #72]	; (8000378 <LCD16x2_Config+0xc0>)
- 800032e:	891b      	ldrh	r3, [r3, #8]
+ 800032e:	889b      	ldrh	r3, [r3, #4]
  8000330:	4313      	orrs	r3, r2
  8000332:	b29a      	uxth	r2, r3
  8000334:	4b10      	ldr	r3, [pc, #64]	; (8000378 <LCD16x2_Config+0xc0>)
- 8000336:	8a1b      	ldrh	r3, [r3, #16]
+ 8000336:	899b      	ldrh	r3, [r3, #12]
  8000338:	4313      	orrs	r3, r2
  800033a:	b29a      	uxth	r2, r3
  800033c:	4b0e      	ldr	r3, [pc, #56]	; (8000378 <LCD16x2_Config+0xc0>)
- 800033e:	8a9b      	ldrh	r3, [r3, #20]
+ 800033e:	8a1b      	ldrh	r3, [r3, #16]
  8000340:	4313      	orrs	r3, r2
  8000342:	b29a      	uxth	r2, r3
  8000344:	4b0c      	ldr	r3, [pc, #48]	; (8000378 <LCD16x2_Config+0xc0>)
- 8000346:	8a5b      	ldrh	r3, [r3, #18]
+ 8000346:	89db      	ldrh	r3, [r3, #14]
  8000348:	4313      	orrs	r3, r2
  800034a:	b29b      	uxth	r3, r3
  800034c:	461a      	mov	r2, r3
@@ -659,7 +659,7 @@ LoopFillZerobss:
   ldr  r2, =_sbss
  80004b8:	2000000c 	.word	0x2000000c
   ldr  r3, = _ebss
- 80004bc:	20000098 	.word	0x20000098
+ 80004bc:	20000094 	.word	0x20000094
 
 080004c0 <ADC_IRQHandler>:
  * @retval None       
@@ -803,26 +803,26 @@ void LCD_write_char(LCD16x2_CfgType *LCD16x2_CfgParam, char Data){
  8000586:	687b      	ldr	r3, [r7, #4]
  8000588:	6818      	ldr	r0, [r3, #0]
  800058a:	687b      	ldr	r3, [r7, #4]
- 800058c:	8a1b      	ldrh	r3, [r3, #16]
+ 800058c:	899b      	ldrh	r3, [r3, #12]
  800058e:	2201      	movs	r2, #1
  8000590:	4619      	mov	r1, r3
  8000592:	f000 fc6b 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  8000596:	687b      	ldr	r3, [r7, #4]
- 8000598:	8adb      	ldrh	r3, [r3, #22]
+ 8000598:	8a5b      	ldrh	r3, [r3, #18]
  800059a:	4618      	mov	r0, r3
  800059c:	f000 fdc8 	bl	8001130 <delay_us>
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN,0);
  80005a0:	687b      	ldr	r3, [r7, #4]
  80005a2:	6818      	ldr	r0, [r3, #0]
  80005a4:	687b      	ldr	r3, [r7, #4]
- 80005a6:	8a1b      	ldrh	r3, [r3, #16]
+ 80005a6:	899b      	ldrh	r3, [r3, #12]
  80005a8:	2200      	movs	r2, #0
  80005aa:	4619      	mov	r1, r3
  80005ac:	f000 fc5e 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  80005b0:	687b      	ldr	r3, [r7, #4]
- 80005b2:	8adb      	ldrh	r3, [r3, #22]
+ 80005b2:	8a5b      	ldrh	r3, [r3, #18]
  80005b4:	4618      	mov	r0, r3
  80005b6:	f000 fdbb 	bl	8001130 <delay_us>
 	LCD_pin_set(LCD16x2_CfgParam, LowNibble);
@@ -834,26 +834,26 @@ void LCD_write_char(LCD16x2_CfgType *LCD16x2_CfgParam, char Data){
  80005c6:	687b      	ldr	r3, [r7, #4]
  80005c8:	6818      	ldr	r0, [r3, #0]
  80005ca:	687b      	ldr	r3, [r7, #4]
- 80005cc:	8a1b      	ldrh	r3, [r3, #16]
+ 80005cc:	899b      	ldrh	r3, [r3, #12]
  80005ce:	2201      	movs	r2, #1
  80005d0:	4619      	mov	r1, r3
  80005d2:	f000 fc4b 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  80005d6:	687b      	ldr	r3, [r7, #4]
- 80005d8:	8adb      	ldrh	r3, [r3, #22]
+ 80005d8:	8a5b      	ldrh	r3, [r3, #18]
  80005da:	4618      	mov	r0, r3
  80005dc:	f000 fda8 	bl	8001130 <delay_us>
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN, 0);
  80005e0:	687b      	ldr	r3, [r7, #4]
  80005e2:	6818      	ldr	r0, [r3, #0]
  80005e4:	687b      	ldr	r3, [r7, #4]
- 80005e6:	8a1b      	ldrh	r3, [r3, #16]
+ 80005e6:	899b      	ldrh	r3, [r3, #12]
  80005e8:	2200      	movs	r2, #0
  80005ea:	4619      	mov	r1, r3
  80005ec:	f000 fc3e 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  80005f0:	687b      	ldr	r3, [r7, #4]
- 80005f2:	8adb      	ldrh	r3, [r3, #22]
+ 80005f2:	8a5b      	ldrh	r3, [r3, #18]
  80005f4:	4618      	mov	r0, r3
  80005f6:	f000 fd9b 	bl	8001130 <delay_us>
 }
@@ -885,26 +885,26 @@ void LCD_cmd(LCD16x2_CfgType *LCD16x2_CfgParam, uint8_t Inst){
  800061a:	687b      	ldr	r3, [r7, #4]
  800061c:	6818      	ldr	r0, [r3, #0]
  800061e:	687b      	ldr	r3, [r7, #4]
- 8000620:	8a1b      	ldrh	r3, [r3, #16]
+ 8000620:	899b      	ldrh	r3, [r3, #12]
  8000622:	2201      	movs	r2, #1
  8000624:	4619      	mov	r1, r3
  8000626:	f000 fc21 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  800062a:	687b      	ldr	r3, [r7, #4]
- 800062c:	8adb      	ldrh	r3, [r3, #22]
+ 800062c:	8a5b      	ldrh	r3, [r3, #18]
  800062e:	4618      	mov	r0, r3
  8000630:	f000 fd7e 	bl	8001130 <delay_us>
 	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO, LCD16x2_CfgParam->EN_PIN,0);
  8000634:	687b      	ldr	r3, [r7, #4]
  8000636:	6818      	ldr	r0, [r3, #0]
  8000638:	687b      	ldr	r3, [r7, #4]
- 800063a:	8a1b      	ldrh	r3, [r3, #16]
+ 800063a:	899b      	ldrh	r3, [r3, #12]
  800063c:	2200      	movs	r2, #0
  800063e:	4619      	mov	r1, r3
  8000640:	f000 fc14 	bl	8000e6c <HAL_GPIO_WritePin>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  8000644:	687b      	ldr	r3, [r7, #4]
- 8000646:	8adb      	ldrh	r3, [r3, #22]
+ 8000646:	8a5b      	ldrh	r3, [r3, #18]
  8000648:	4618      	mov	r0, r3
  800064a:	f000 fd71 	bl	8001130 <delay_us>
 }
@@ -1037,7 +1037,7 @@ if (row == 2){
 }
 delay_us(LCD16x2_CfgParam->LCD_EN_Delay);  //This operation has a delay given in the datasheet.
  8000708:	687b      	ldr	r3, [r7, #4]
- 800070a:	8adb      	ldrh	r3, [r3, #22]
+ 800070a:	8a5b      	ldrh	r3, [r3, #18]
  800070c:	4618      	mov	r0, r3
  800070e:	f000 fd0f 	bl	8001130 <delay_us>
 }
@@ -1115,7 +1115,7 @@ void LCD_SL(LCD16x2_CfgType *LCD16x2_CfgParam){
  8000768:	f7ff ff4b 	bl	8000602 <LCD_cmd>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  800076c:	687b      	ldr	r3, [r7, #4]
- 800076e:	8adb      	ldrh	r3, [r3, #22]
+ 800076e:	8a5b      	ldrh	r3, [r3, #18]
  8000770:	4618      	mov	r0, r3
  8000772:	f000 fcdd 	bl	8001130 <delay_us>
 
@@ -1151,7 +1151,7 @@ void LCD_SR(LCD16x2_CfgType *LCD16x2_CfgParam){
  8000792:	f7ff ff36 	bl	8000602 <LCD_cmd>
 	delay_us(LCD16x2_CfgParam->LCD_EN_Delay);
  8000796:	687b      	ldr	r3, [r7, #4]
- 8000798:	8adb      	ldrh	r3, [r3, #22]
+ 8000798:	8a5b      	ldrh	r3, [r3, #18]
  800079a:	4618      	mov	r0, r3
  800079c:	f000 fcc8 	bl	8001130 <delay_us>
 
@@ -1178,7 +1178,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  80007b4:	687b      	ldr	r3, [r7, #4]
  80007b6:	6818      	ldr	r0, [r3, #0]
  80007b8:	687b      	ldr	r3, [r7, #4]
- 80007ba:	8a99      	ldrh	r1, [r3, #20]
+ 80007ba:	8a19      	ldrh	r1, [r3, #16]
  80007bc:	78fb      	ldrb	r3, [r7, #3]
  80007be:	115b      	asrs	r3, r3, #5
  80007c0:	b2db      	uxtb	r3, r3
@@ -1190,7 +1190,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  80007ce:	687b      	ldr	r3, [r7, #4]
  80007d0:	6818      	ldr	r0, [r3, #0]
  80007d2:	687b      	ldr	r3, [r7, #4]
- 80007d4:	8a59      	ldrh	r1, [r3, #18]
+ 80007d4:	89d9      	ldrh	r1, [r3, #14]
  80007d6:	78fb      	ldrb	r3, [r7, #3]
  80007d8:	111b      	asrs	r3, r3, #4
  80007da:	b2db      	uxtb	r3, r3
@@ -1202,7 +1202,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  80007e8:	687b      	ldr	r3, [r7, #4]
  80007ea:	6818      	ldr	r0, [r3, #0]
  80007ec:	687b      	ldr	r3, [r7, #4]
- 80007ee:	89d9      	ldrh	r1, [r3, #14]
+ 80007ee:	8959      	ldrh	r1, [r3, #10]
  80007f0:	78fb      	ldrb	r3, [r7, #3]
  80007f2:	10db      	asrs	r3, r3, #3
  80007f4:	b2db      	uxtb	r3, r3
@@ -1214,7 +1214,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  8000802:	687b      	ldr	r3, [r7, #4]
  8000804:	6818      	ldr	r0, [r3, #0]
  8000806:	687b      	ldr	r3, [r7, #4]
- 8000808:	8999      	ldrh	r1, [r3, #12]
+ 8000808:	8919      	ldrh	r1, [r3, #8]
  800080a:	78fb      	ldrb	r3, [r7, #3]
  800080c:	109b      	asrs	r3, r3, #2
  800080e:	b2db      	uxtb	r3, r3
@@ -1226,7 +1226,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  800081c:	687b      	ldr	r3, [r7, #4]
  800081e:	6818      	ldr	r0, [r3, #0]
  8000820:	687b      	ldr	r3, [r7, #4]
- 8000822:	8959      	ldrh	r1, [r3, #10]
+ 8000822:	88d9      	ldrh	r1, [r3, #6]
  8000824:	78fb      	ldrb	r3, [r7, #3]
  8000826:	105b      	asrs	r3, r3, #1
  8000828:	b2db      	uxtb	r3, r3
@@ -1238,7 +1238,7 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
  8000836:	687b      	ldr	r3, [r7, #4]
  8000838:	6818      	ldr	r0, [r3, #0]
  800083a:	687b      	ldr	r3, [r7, #4]
- 800083c:	8919      	ldrh	r1, [r3, #8]
+ 800083c:	8899      	ldrh	r1, [r3, #4]
  800083e:	78fb      	ldrb	r3, [r7, #3]
  8000840:	f003 0301 	and.w	r3, r3, #1
  8000844:	b2db      	uxtb	r3, r3
@@ -1401,7 +1401,7 @@ __weak void HAL_IncTick(void)
  8000914:	4770      	bx	lr
  8000916:	bf00      	nop
  8000918:	20000008 	.word	0x20000008
- 800091c:	20000054 	.word	0x20000054
+ 800091c:	20000050 	.word	0x20000050
 
 08000920 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -1421,7 +1421,7 @@ __weak uint32_t HAL_GetTick(void)
  800092c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000930:	4770      	bx	lr
  8000932:	bf00      	nop
- 8000934:	20000054 	.word	0x20000054
+ 8000934:	20000050 	.word	0x20000050
 
 08000938 <HAL_Delay>:
   *       implementations in user file.
@@ -2778,7 +2778,7 @@ void timer_delay_init(void){
  800111c:	bd80      	pop	{r7, pc}
  800111e:	bf00      	nop
  8001120:	431bde83 	.word	0x431bde83
- 8001124:	20000058 	.word	0x20000058
+ 8001124:	20000054 	.word	0x20000054
  8001128:	40001000 	.word	0x40001000
  800112c:	40023800 	.word	0x40023800
 
@@ -2814,7 +2814,7 @@ void delay_us(volatile uint16_t u16){
  8001158:	f85d 7b04 	ldr.w	r7, [sp], #4
  800115c:	4770      	bx	lr
  800115e:	bf00      	nop
- 8001160:	20000058 	.word	0x20000058
+ 8001160:	20000054 	.word	0x20000054
 
 08001164 <__libc_init_array>:
  8001164:	b570      	push	{r4, r5, r6, lr}
