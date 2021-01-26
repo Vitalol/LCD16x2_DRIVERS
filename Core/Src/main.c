@@ -9,7 +9,7 @@ void LCD16x2_Config(void);
 void Error_Handler(void);
 
 LCD16x2_CfgType LCD16x2_CfgParam;
-GPIO_InitTypeDef LCD_GPIO;
+
 
 
 int main(void)
@@ -72,7 +72,7 @@ void LCD16x2_Config(void){
 
 	LCD16x2_CfgParam.LCD_EN_Delay = 60;
 
-	LCD_GPIO_cfg(&LCD16x2_CfgParam, &LCD_GPIO);
+	LCD_GPIO_cfg(&LCD16x2_CfgParam);
 
 
 }

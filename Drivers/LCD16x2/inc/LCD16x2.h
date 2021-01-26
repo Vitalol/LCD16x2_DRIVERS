@@ -41,7 +41,7 @@ void LCD_clear(LCD16x2_CfgType *LCD16x2_CfgParam);
 void LCD_set_cursor(LCD16x2_CfgType *LCD16x2_CfgParam, uint8_t column, uint8_t row);
 void LCD_SL(LCD16x2_CfgType *LCD16x2_CfgParam);
 void LCD_SR(LCD16x2_CfgType *LCD16x2_CfgParam);
-void LCD_GPIO_cfg(LCD16x2_CfgType *LCD16x2_CfgParam, GPIO_InitTypeDef *LCD_GPIO);
+void LCD_GPIO_cfg(LCD16x2_CfgType *LCD16x2_CfgParam);
 
 /*
  * Instruction codes for 4bits mode (6 bits) used for initialization
