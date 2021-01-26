@@ -225,12 +225,12 @@ void LCD_SR(LCD16x2_CfgType *LCD16x2_CfgParam){
 
 
 static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RS_PIN, ((Instr)&(1<<5))>>5);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RW_PIN, ((Instr)&(1<<4))>>4);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D7_PIN, ((Instr)&(1<<3))>>3);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D6_PIN, ((Instr)&(1<<2))>>2);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D5_PIN, ((Instr)&(1<<1))>>1);
-		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D4_PIN, (Instr)&(1));
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RS_PIN, ((Instr)&(1<<5))>>5);
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->RW_PIN, ((Instr)&(1<<4))>>4);
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D7_PIN, ((Instr)&(1<<3))>>3);
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D6_PIN, ((Instr)&(1<<2))>>2);
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D5_PIN, ((Instr)&(1<<1))>>1);
+	HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D4_PIN, (Instr)&(1));
 }
 
 void LCD_GPIO_cfg(LCD16x2_CfgType *LCD16x2_CfgParam, GPIO_InitTypeDef *LCD_GPIO){
