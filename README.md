@@ -12,3 +12,4 @@ It uses a timer to implement the delay function (/utilities) to achieve the enab
 
 The datasheet used as reference can be found [here](https://datasheetspdf.com/pdf-file/519148/CA/LCD-1602A/1). 
 
+In the main source file you'll find an example of implementation.
