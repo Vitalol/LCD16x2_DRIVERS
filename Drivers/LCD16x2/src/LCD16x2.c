@@ -233,6 +233,24 @@ static void LCD_pin_set(LCD16x2_CfgType *LCD16x2_CfgParam, int8_t Instr){
 		HAL_GPIO_WritePin(LCD16x2_CfgParam->LCD_GPIO,LCD16x2_CfgParam->D4_PIN, (Instr)&(1));
 }
 
+void LCD_GPIO_cfg(LCD16x2_CfgType *LCD16x2_CfgParam, GPIO_InitTypeDef *LCD_GPIO){
 
+	if(LCD16x2_CfgParam->LCD_GPIO == GPIOA)
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+	if(LCD16x2_CfgParam->LCD_GPIO == GPIOB)
+		__HAL_RCC_GPIOB_CLK_ENABLE();
+	if(LCD16x2_CfgParam->LCD_GPIO == GPIOC)
+		__HAL_RCC_GPIOC_CLK_ENABLE();
+	if(LCD16x2_CfgParam->LCD_GPIO == GPIOD)
+		__HAL_RCC_GPIOD_CLK_ENABLE();
+
+
+	LCD_GPIO->Pin = LCD16x2_CfgParam->D7_PIN | LCD16x2_CfgParam->D6_PIN | LCD16x2_CfgParam->D5_PIN | LCD16x2_CfgParam->D4_PIN | LCD16x2_CfgParam->EN_PIN | LCD16x2_CfgParam->RS_PIN | LCD16x2_CfgParam->RW_PIN;
+	LCD_GPIO->Mode = GPIO_MODE_OUTPUT_PP;
+	LCD_GPIO->Pull = GPIO_NOPULL;
+	LCD_GPIO->Speed = GPIO_SPEED_LOW;
+	HAL_GPIO_Init(LCD16x2_CfgParam->LCD_GPIO, LCD_GPIO);
+
+}
 
 

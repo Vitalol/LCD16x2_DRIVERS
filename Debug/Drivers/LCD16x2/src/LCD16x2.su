@@ -7,3 +7,4 @@ LCD16x2.c:167:6:LCD_write_string	24	static
 LCD16x2.c:184:6:LCD_SL	16	static
 LCD16x2.c:205:6:LCD_SR	16	static
 LCD16x2.c:227:13:LCD_pin_set	16	static
+LCD16x2.c:236:6:LCD_GPIO_cfg	32	static

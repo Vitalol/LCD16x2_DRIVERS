@@ -6,10 +6,11 @@
 
 void SystemClock_Config(void);
 void LCD16x2_Config(void);
+void Error_Handler(void);
 
 LCD16x2_CfgType LCD16x2_CfgParam;
 GPIO_InitTypeDef LCD_GPIO;
-void Error_Handler(void);
+
 
 int main(void)
 {
@@ -71,17 +72,7 @@ void LCD16x2_Config(void){
 
 	LCD16x2_CfgParam.LCD_EN_Delay = 60;
 
-
-	// GPIO Config
-
-	__HAL_RCC_GPIOB_CLK_ENABLE();
-
-
-	LCD_GPIO.Pin = LCD16x2_CfgParam.D7_PIN | LCD16x2_CfgParam.D6_PIN | LCD16x2_CfgParam.D5_PIN | LCD16x2_CfgParam.D4_PIN | LCD16x2_CfgParam.EN_PIN | LCD16x2_CfgParam.RS_PIN | LCD16x2_CfgParam.RW_PIN;
-	LCD_GPIO.Mode = GPIO_MODE_OUTPUT_PP;
-	LCD_GPIO.Pull = GPIO_NOPULL;
-	LCD_GPIO.Speed = GPIO_SPEED_LOW;
-	HAL_GPIO_Init(LCD16x2_CfgParam.LCD_GPIO, &LCD_GPIO);
+	LCD_GPIO_cfg(&LCD16x2_CfgParam, &LCD_GPIO);
 
 
 }
